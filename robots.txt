@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ovoyu.github.io/shiyuyang.github.io/sitemap.xml
+
