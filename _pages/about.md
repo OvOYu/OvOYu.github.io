@@ -3,7 +3,7 @@ permalink: /
 title: "Shiyu Yang - Ph.D. Student in AI & Traffic Prediction"
 excerpt: "Shiyu Yang is a Ph.D. student at Fuzhou University specializing in Artificial Intelligence, Traffic Prediction, Graph Neural Networks, and Spatiotemporal Modeling"
 description: "Academic homepage of Shiyu Yang, Ph.D. student researching AI, traffic forecasting, graph convolutional networks, intelligent transportation systems, and deep learning at Fuzhou University"
-keywords: "Shiyu Yang, 杨世宇, Traffic Prediction, AI, Graph Neural Networks, Spatiotemporal Modeling, Deep Learning, Fuzhou University, Traffic Forecasting, GCN, RNN, Intelligent Transportation"
+keywords: "Shiyu Yang, Traffic Prediction, AI, Graph Neural Networks, Spatiotemporal Modeling, Deep Learning, Fuzhou University, Traffic Forecasting, GCN, RNN, Intelligent Transportation Systems, Autonomous Driving"
 author_profile: true
 redirect_from: 
   - /about/
