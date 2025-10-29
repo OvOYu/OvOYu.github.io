@@ -3,13 +3,24 @@
 {% include analytics.html %}
 {% include fetch_google_scholar_stats.html %}
 
-<!-- 点赞功能 JavaScript -->
+<!-- 引入 LeanCloud SDK -->
+<script src="//cdn.jsdelivr.net/npm/leancloud-storage@4.15.2/dist/av-min.js"></script>
+
+<!-- 点赞功能 JavaScript (LeanCloud) -->
 <script>
 (function() {
+  // 初始化 LeanCloud
+  const APP_ID = 'zEBpxeuvNAB1AzNQ7ECkykgg-MdYXbMMI';
+  const APP_KEY = 'vkh9k9NXJOLNrbgOqrdMqlQ1';
+  
+  AV.init({
+    appId: APP_ID,
+    appKey: APP_KEY,
+    serverURL: 'https://zebpxeuv.api.lncldglobal.com'
+  });
+  
   const STORAGE_KEY = 'hasLiked';
-  const API_URL = 'https://api.countapi.xyz';
-  const NAMESPACE = 'shiyuyang-homepage';
-  const KEY = 'blessing-likes';
+  const COUNTER_NAME = 'blessing-likes';
   
   const likeButton = document.getElementById('like-button');
   const likeCountElement = document.getElementById('like-count');
@@ -23,37 +34,31 @@
     likeButton.style.cursor = 'not-allowed';
   }
   
-  // 获取当前点赞数
-  function fetchLikeCount() {
-    fetch(`${API_URL}/get/${NAMESPACE}/${KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.value !== undefined) {
-          updateCount(data.value);
-        } else {
-          // 如果key不存在，创建它
-          createCounter();
-        }
-      })
-      .catch(error => {
-        console.error('获取点赞数失败:', error);
-        likeCountElement.textContent = '∞';
-      });
-  }
-  
-  // 创建计数器
-  function createCounter() {
-    fetch(`${API_URL}/create?namespace=${NAMESPACE}&key=${KEY}&value=0`)
-      .then(response => response.json())
-      .then(data => {
+  // 获取或创建计数器
+  async function fetchLikeCount() {
+    try {
+      const query = new AV.Query('Counter');
+      query.equalTo('name', COUNTER_NAME);
+      const counter = await query.first();
+      
+      if (counter) {
+        updateCount(counter.get('count') || 0);
+      } else {
+        // 创建新计数器
+        const newCounter = new AV.Object('Counter');
+        newCounter.set('name', COUNTER_NAME);
+        newCounter.set('count', 0);
+        await newCounter.save();
         updateCount(0);
-      })
-      .catch(error => console.error('创建计数器失败:', error));
+      }
+    } catch (error) {
+      console.error('获取点赞数失败:', error);
+      likeCountElement.textContent = '∞';
+    }
   }
   
-  // 更新显示的点赞数
+  // 更新显示的点赞数（带动画）
   function updateCount(count) {
-    // 数字动画效果
     const currentCount = parseInt(likeCountElement.textContent) || 0;
     const targetCount = count;
     const duration = 500;
@@ -89,42 +94,49 @@
   }
   
   // 点赞按钮点击事件
-  likeButton.addEventListener('click', function(e) {
+  likeButton.addEventListener('click', async function(e) {
     if (hasLiked || localStorage.getItem(STORAGE_KEY) === 'true') {
-      // 已经点过赞，显示提示
       showToast('您已经点过赞啦！感谢支持！💝');
       return;
     }
     
-    // 增加点赞数
-    fetch(`${API_URL}/hit/${NAMESPACE}/${KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        if (data.value !== undefined) {
-          updateCount(data.value);
-          localStorage.setItem(STORAGE_KEY, 'true');
-          likeButton.classList.add('liked');
-          likeButton.style.opacity = '0.7';
-          likeButton.style.cursor = 'not-allowed';
-          
-          // 创建多个爱心粒子
-          const rect = likeButton.getBoundingClientRect();
-          for (let i = 0; i < 5; i++) {
-            setTimeout(() => {
-              createHeartParticle(
-                rect.left + rect.width / 2 + (Math.random() - 0.5) * 30,
-                rect.top + rect.height / 2
-              );
-            }, i * 100);
-          }
-          
-          showToast('感谢您的祝福！🎉');
+    try {
+      // 查询计数器
+      const query = new AV.Query('Counter');
+      query.equalTo('name', COUNTER_NAME);
+      const counter = await query.first();
+      
+      if (counter) {
+        // 增加计数
+        counter.increment('count', 1);
+        await counter.save();
+        
+        const newCount = counter.get('count');
+        updateCount(newCount);
+        
+        // 标记已点赞
+        localStorage.setItem(STORAGE_KEY, 'true');
+        likeButton.classList.add('liked');
+        likeButton.style.opacity = '0.7';
+        likeButton.style.cursor = 'not-allowed';
+        
+        // 创建多个爱心粒子
+        const rect = likeButton.getBoundingClientRect();
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => {
+            createHeartParticle(
+              rect.left + rect.width / 2 + (Math.random() - 0.5) * 30,
+              rect.top + rect.height / 2
+            );
+          }, i * 100);
         }
-      })
-      .catch(error => {
-        console.error('点赞失败:', error);
-        showToast('点赞失败，请稍后再试');
-      });
+        
+        showToast('感谢您的祝福！🎉');
+      }
+    } catch (error) {
+      console.error('点赞失败:', error);
+      showToast('点赞失败，请稍后再试 😢');
+    }
   });
   
   // 显示提示消息
@@ -154,7 +166,7 @@
     }, 2000);
   }
   
-  // 添加slideUp动画
+  // 添加 slideUp 动画
   const style = document.createElement('style');
   style.textContent = `
     @keyframes slideUp {
