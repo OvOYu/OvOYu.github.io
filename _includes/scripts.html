@@ -111,11 +111,6 @@
   
   // 点赞按钮点击事件
   likeButton.addEventListener('click', async function(e) {
-    // 防止短时间内重复点击
-    if (likeButton.disabled) return;
-    
-    likeButton.disabled = true;
-    
     try {
       // 查询计数器
       const query = new AV.Query('Counter');
@@ -170,11 +165,6 @@
         console.error('点赞失败:', error);
         showToast('点赞失败，请稍后再试 😢');
       }
-    } finally {
-      // 1秒后恢复按钮，防止连续快速点击
-      setTimeout(() => {
-        likeButton.disabled = false;
-      }, 1000);
     }
   });
   
