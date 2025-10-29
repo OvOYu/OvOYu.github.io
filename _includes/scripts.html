@@ -39,21 +39,45 @@
     try {
       const query = new AV.Query('Counter');
       query.equalTo('name', COUNTER_NAME);
-      const counter = await query.first();
+      let counter = await query.first();
       
       if (counter) {
         updateCount(counter.get('count') || 0);
       } else {
         // 创建新计数器
-        const newCounter = new AV.Object('Counter');
-        newCounter.set('name', COUNTER_NAME);
-        newCounter.set('count', 0);
-        await newCounter.save();
+        await createCounter();
         updateCount(0);
       }
     } catch (error) {
-      console.error('获取点赞数失败:', error);
-      likeCountElement.textContent = '∞';
+      // 如果是表不存在的错误（错误代码 101），创建计数器
+      if (error.code === 101) {
+        console.log('Counter 表不存在，正在创建...');
+        await createCounter();
+        updateCount(0);
+      } else {
+        console.error('获取点赞数失败:', error);
+        likeCountElement.textContent = '💝';
+      }
+    }
+  }
+  
+  // 创建计数器
+  async function createCounter() {
+    try {
+      const Counter = AV.Object.extend('Counter');
+      const newCounter = new Counter();
+      newCounter.set('name', COUNTER_NAME);
+      newCounter.set('count', 0);
+      // 设置 ACL 为公开读写
+      const acl = new AV.ACL();
+      acl.setPublicReadAccess(true);
+      acl.setPublicWriteAccess(true);
+      newCounter.setACL(acl);
+      await newCounter.save();
+      console.log('Counter 创建成功！');
+    } catch (error) {
+      console.error('创建计数器失败:', error);
+      throw error;
     }
   }
   
@@ -104,38 +128,56 @@
       // 查询计数器
       const query = new AV.Query('Counter');
       query.equalTo('name', COUNTER_NAME);
-      const counter = await query.first();
+      let counter = await query.first();
       
-      if (counter) {
-        // 增加计数
-        counter.increment('count', 1);
-        await counter.save();
-        
-        const newCount = counter.get('count');
-        updateCount(newCount);
-        
-        // 标记已点赞
-        localStorage.setItem(STORAGE_KEY, 'true');
-        likeButton.classList.add('liked');
-        likeButton.style.opacity = '0.7';
-        likeButton.style.cursor = 'not-allowed';
-        
-        // 创建多个爱心粒子
-        const rect = likeButton.getBoundingClientRect();
-        for (let i = 0; i < 5; i++) {
-          setTimeout(() => {
-            createHeartParticle(
-              rect.left + rect.width / 2 + (Math.random() - 0.5) * 30,
-              rect.top + rect.height / 2
-            );
-          }, i * 100);
-        }
-        
-        showToast('感谢您的祝福！🎉');
+      if (!counter) {
+        // 如果计数器不存在，先创建
+        await createCounter();
+        // 重新查询
+        const newQuery = new AV.Query('Counter');
+        newQuery.equalTo('name', COUNTER_NAME);
+        counter = await newQuery.first();
       }
+      
+      // 增加计数
+      counter.increment('count', 1);
+      await counter.save();
+      
+      const newCount = counter.get('count');
+      updateCount(newCount);
+      
+      // 标记已点赞
+      localStorage.setItem(STORAGE_KEY, 'true');
+      likeButton.classList.add('liked');
+      likeButton.style.opacity = '0.7';
+      likeButton.style.cursor = 'not-allowed';
+      
+      // 创建多个爱心粒子
+      const rect = likeButton.getBoundingClientRect();
+      for (let i = 0; i < 5; i++) {
+        setTimeout(() => {
+          createHeartParticle(
+            rect.left + rect.width / 2 + (Math.random() - 0.5) * 30,
+            rect.top + rect.height / 2
+          );
+        }, i * 100);
+      }
+      
+      showToast('感谢您的祝福！🎉');
     } catch (error) {
-      console.error('点赞失败:', error);
-      showToast('点赞失败，请稍后再试 😢');
+      // 如果是表不存在错误，尝试创建
+      if (error.code === 101) {
+        try {
+          await createCounter();
+          showToast('点赞功能已初始化，请再点一次！');
+        } catch (createError) {
+          console.error('创建计数器失败:', createError);
+          showToast('点赞失败，请稍后再试 😢');
+        }
+      } else {
+        console.error('点赞失败:', error);
+        showToast('点赞失败，请稍后再试 😢');
+      }
     }
   });
   
