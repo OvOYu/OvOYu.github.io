@@ -1,0 +1,48 @@
+---
+layout: compress
+---
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    {% include head.html %}
+    {% include head/custom.html %}
+  </head>
+
+  <body>
+
+    {% include browser-upgrade.html %}
+    
+    <!-- 固定顶部容器 -->
+    <div id="sticky-header">
+      <!-- 点赞横幅 -->
+      <div id="blessing-banner">
+        <div class="blessing-content">
+          <span class="blessing-text">✨ I wish you all good health, peace, happiness and all the best in your future life, work and study! ✨ <span class="arrow-hint">👉</span></span>
+          <button id="like-button" class="like-btn">
+            <span class="heart-icon">❤️</span>
+            <span class="like-count" id="like-count">0</span>
+          </button>
+        </div>
+      </div>
+      
+      {% include masthead.html %}
+    </div>
+
+    <div id="main" role="main">
+      {% include sidebar.html %}
+    
+      <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+        {% if page.title %}<meta itemprop="headline" content="{{ page.title | markdownify | strip_html | strip_newlines | escape_once }}">{% endif %}
+        <div class="page__inner-wrap">
+          <section class="page__content" itemprop="text">
+            {{ content }}
+          </section>
+        </div>
+      </article>
+    </div>
+
+    {% include scripts.html %}
+
+  </body>
+</html>

@@ -1,0 +1,172 @@
+<script src="assets/js/main.min.js"></script>
+
+{% include analytics.html %}
+{% include fetch_google_scholar_stats.html %}
+
+<!-- 点赞功能 JavaScript -->
+<script>
+(function() {
+  const STORAGE_KEY = 'hasLiked';
+  const API_URL = 'https://api.countapi.xyz';
+  const NAMESPACE = 'shiyuyang-homepage';
+  const KEY = 'blessing-likes';
+  
+  const likeButton = document.getElementById('like-button');
+  const likeCountElement = document.getElementById('like-count');
+  
+  if (!likeButton || !likeCountElement) return;
+  
+  // 检查用户是否已经点过赞
+  const hasLiked = localStorage.getItem(STORAGE_KEY) === 'true';
+  if (hasLiked) {
+    likeButton.style.opacity = '0.7';
+    likeButton.style.cursor = 'not-allowed';
+  }
+  
+  // 获取当前点赞数
+  function fetchLikeCount() {
+    fetch(`${API_URL}/get/${NAMESPACE}/${KEY}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.value !== undefined) {
+          updateCount(data.value);
+        } else {
+          // 如果key不存在，创建它
+          createCounter();
+        }
+      })
+      .catch(error => {
+        console.error('获取点赞数失败:', error);
+        likeCountElement.textContent = '∞';
+      });
+  }
+  
+  // 创建计数器
+  function createCounter() {
+    fetch(`${API_URL}/create?namespace=${NAMESPACE}&key=${KEY}&value=0`)
+      .then(response => response.json())
+      .then(data => {
+        updateCount(0);
+      })
+      .catch(error => console.error('创建计数器失败:', error));
+  }
+  
+  // 更新显示的点赞数
+  function updateCount(count) {
+    // 数字动画效果
+    const currentCount = parseInt(likeCountElement.textContent) || 0;
+    const targetCount = count;
+    const duration = 500;
+    const steps = 20;
+    const increment = (targetCount - currentCount) / steps;
+    let current = currentCount;
+    let step = 0;
+    
+    const timer = setInterval(() => {
+      step++;
+      current += increment;
+      likeCountElement.textContent = Math.round(current);
+      
+      if (step >= steps) {
+        clearInterval(timer);
+        likeCountElement.textContent = targetCount;
+      }
+    }, duration / steps);
+  }
+  
+  // 创建爱心粒子效果
+  function createHeartParticle(x, y) {
+    const particle = document.createElement('div');
+    particle.className = 'heart-particle';
+    particle.textContent = '❤️';
+    particle.style.left = x + 'px';
+    particle.style.top = y + 'px';
+    document.body.appendChild(particle);
+    
+    setTimeout(() => {
+      particle.remove();
+    }, 1500);
+  }
+  
+  // 点赞按钮点击事件
+  likeButton.addEventListener('click', function(e) {
+    if (hasLiked || localStorage.getItem(STORAGE_KEY) === 'true') {
+      // 已经点过赞，显示提示
+      showToast('您已经点过赞啦！感谢支持！💝');
+      return;
+    }
+    
+    // 增加点赞数
+    fetch(`${API_URL}/hit/${NAMESPACE}/${KEY}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.value !== undefined) {
+          updateCount(data.value);
+          localStorage.setItem(STORAGE_KEY, 'true');
+          likeButton.classList.add('liked');
+          likeButton.style.opacity = '0.7';
+          likeButton.style.cursor = 'not-allowed';
+          
+          // 创建多个爱心粒子
+          const rect = likeButton.getBoundingClientRect();
+          for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+              createHeartParticle(
+                rect.left + rect.width / 2 + (Math.random() - 0.5) * 30,
+                rect.top + rect.height / 2
+              );
+            }, i * 100);
+          }
+          
+          showToast('感谢您的祝福！🎉');
+        }
+      })
+      .catch(error => {
+        console.error('点赞失败:', error);
+        showToast('点赞失败，请稍后再试');
+      });
+  });
+  
+  // 显示提示消息
+  function showToast(message) {
+    const toast = document.createElement('div');
+    toast.textContent = message;
+    toast.style.cssText = `
+      position: fixed;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(102, 126, 234, 0.95);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 14px;
+      font-weight: 600;
+      z-index: 10000;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      animation: slideDown 0.3s ease-out;
+    `;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+      toast.style.animation = 'slideUp 0.3s ease-out';
+      setTimeout(() => toast.remove(), 300);
+    }, 2000);
+  }
+  
+  // 添加slideUp动画
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideUp {
+      to {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // 页面加载时获取点赞数
+  fetchLikeCount();
+})();
+</script>

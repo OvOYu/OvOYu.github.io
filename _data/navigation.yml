@@ -1,0 +1,22 @@
+# main links links
+main:
+  - title: "About Me"
+    url: "/#about-me"
+
+  - title: "About My Life"
+    url: "/#about-my-life"
+
+  - title: "Life Gallery"
+    url: "/#life-gallery"
+    
+  - title: "Publications"
+    url: "/#publications"
+
+  - title: "Academic Service"
+    url: "/#academic-service"
+  
+  - title: "Honors and Awards"
+    url: "/#honors-and-awards"
+
+  - title: "Visitors"
+    url: "/#visitors"
