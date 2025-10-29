@@ -9,8 +9,8 @@
 title                    : "Shiyu Yang - Ph.D. Student in AI & Traffic Prediction"
 description              : "Shiyu Yang is a Ph.D. student at Fuzhou University specializing in Artificial Intelligence, Traffic Prediction, Spatiotemporal Modeling, and Autonomous Driving. Research on Graph Neural Networks and Deep Learning."
 url                      : "https://ovoyu.github.io"
-baseurl                  : "/shiyuyang.github.io"
-repository               : "OvOYu/shiyuyang.github.io"
+baseurl                  : ""
+repository               : "OvOYu/OvOYu.github.io"
 google_scholar_stats_use_cdn : True
 
 # google analytics
