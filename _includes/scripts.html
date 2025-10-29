@@ -19,20 +19,12 @@
     serverURL: 'https://zebpxeuv.api.lncldglobal.com'
   });
   
-  const STORAGE_KEY = 'hasLiked';
   const COUNTER_NAME = 'blessing-likes';
   
   const likeButton = document.getElementById('like-button');
   const likeCountElement = document.getElementById('like-count');
   
   if (!likeButton || !likeCountElement) return;
-  
-  // 检查用户是否已经点过赞
-  const hasLiked = localStorage.getItem(STORAGE_KEY) === 'true';
-  if (hasLiked) {
-    likeButton.style.opacity = '0.7';
-    likeButton.style.cursor = 'not-allowed';
-  }
   
   // 获取或创建计数器
   async function fetchLikeCount() {
@@ -119,10 +111,10 @@
   
   // 点赞按钮点击事件
   likeButton.addEventListener('click', async function(e) {
-    if (hasLiked || localStorage.getItem(STORAGE_KEY) === 'true') {
-      showToast('您已经点过赞啦！感谢支持！💝');
-      return;
-    }
+    // 防止短时间内重复点击
+    if (likeButton.disabled) return;
+    
+    likeButton.disabled = true;
     
     try {
       // 查询计数器
@@ -146,11 +138,11 @@
       const newCount = counter.get('count');
       updateCount(newCount);
       
-      // 标记已点赞
-      localStorage.setItem(STORAGE_KEY, 'true');
+      // 添加点赞动画
       likeButton.classList.add('liked');
-      likeButton.style.opacity = '0.7';
-      likeButton.style.cursor = 'not-allowed';
+      setTimeout(() => {
+        likeButton.classList.remove('liked');
+      }, 500);
       
       // 创建多个爱心粒子
       const rect = likeButton.getBoundingClientRect();
@@ -178,6 +170,11 @@
         console.error('点赞失败:', error);
         showToast('点赞失败，请稍后再试 😢');
       }
+    } finally {
+      // 1秒后恢复按钮，防止连续快速点击
+      setTimeout(() => {
+        likeButton.disabled = false;
+      }, 1000);
     }
   });
   
