@@ -62,20 +62,9 @@ I am a cheerful and outgoing person with a wide range of interests and hobbies.
 Here are some moments from my life - travels, hobbies, and beautiful scenery:
 
 <div class="life-gallery">
-  <!-- 视频：玉龙雪山 -->
-  <div class="gallery-section">
-    <h3 class="section-title">🏔️ Travel & Adventure</h3>
-    <div class="gallery-item video-item">
-      <video controls width="100%" style="max-width: 700px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.25);">
-        <source src="ysy/shan.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <p class="gallery-caption">🗻 Jade Dragon Snow Mountain</p>
-    </div>
-  </div>
-
   <!-- Travel Photos -->
   <div class="gallery-section">
+    <h3 class="section-title">🏔️ Travel & Adventure</h3>
     <div class="gallery-row">
       <div class="gallery-item">
         <img src="ysy/haibian.jpg" alt="Seaside" style="width: 100%; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
@@ -86,6 +75,15 @@ Here are some moments from my life - travels, hobbies, and beautiful scenery:
         <img src="ysy/jiangnan.jpg" alt="Jiangnan" style="width: 100%; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.2);">
         <p class="gallery-caption">🏞️ Jiangnan Water Town</p>
       </div>
+    </div>
+    
+    <!-- 视频：玉龙雪山 -->
+    <div class="gallery-item video-item">
+      <video controls width="100%" style="max-width: 700px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.25);">
+        <source src="ysy/shan.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p class="gallery-caption">🗻 Jade Dragon Snow Mountain</p>
     </div>
   </div>
 
