@@ -5,7 +5,7 @@ excerpt: "Shiyu Yang is a Ph.D. student at Fuzhou University specializing in Art
 description: "Academic homepage of Shiyu Yang, Ph.D. student researching AI, traffic forecasting, graph convolutional networks, intelligent transportation systems, and deep learning at Fuzhou University"
 keywords: "Shiyu Yang, Traffic Prediction, AI, Graph Neural Networks, Spatiotemporal Modeling, Deep Learning, Fuzhou University, Traffic Forecasting, GCN, RNN, Intelligent Transportation Systems, Autonomous Driving"
 author_profile: true
-redirect_from: 
+redirect_from:
   - /about/
   - /about.html
 ---
@@ -24,13 +24,11 @@ redirect_from:
 Hi! I'm **Shiyu Yang**, a Ph.D. student at the College of Computer and Data Science, Fuzhou University, Fuzhou, China.
 
 My research interests focus on:
+
 - 🤖 **Artificial Intelligence**
-- 🚗 **Intelligent Transportation Systems**  
+- 🚗 **Intelligent Transportation Systems**
 - 📊 **Spatiotemporal Modeling**
 - 🚘 **Autonomous Driving**
-
-**🔍 Seeking CSC Collaboration Opportunities:**  
-I am actively seeking opportunities for CSC (China Scholarship Council) joint Ph.D. programs or visiting scholar positions abroad. If you are an international professor with available positions (in any field), I would be grateful for the opportunity. Please feel free to contact me at [2549314873@qq.com](mailto:2549314873@qq.com).
 
 **🤝 Open to Collaboration:**  
 I welcome academic collaborations and research discussions in my research areas!
@@ -227,46 +225,50 @@ Here are some moments from my life - travels, hobbies, and beautiful scenery:
 ### 2026
 
 1. **<u>Shiyu Yang</u>**, Qunyong Wu, Mengmeng Li  
-   *Decoupled multi-spatio-temporal fusion graph convolutional recurrent network for traffic prediction*  
+   _Decoupled multi-spatio-temporal fusion graph convolutional recurrent network for traffic prediction_  
    **Engineering Applications of Artificial Intelligence**, 2026, Volume 163, Pages 112956  
    [DOI: 10.1016/j.engappai.2025.112956](https://doi.org/10.1016/j.engappai.2025.112956)
 
+2. **<u>Shiyu Yang</u>**, Qunyong Wu, Zhanchao Huang, Zihao Zhuo  
+   _SGA-Seq: Station-aware Graph Attention Sequence Network for Cellular Traffic Prediction_  
+   **IEEE Transactions on Network and Service Management**
+
 ### 2025
 
-2. **<u>Shiyu Yang</u>**, Qunyong Wu, Mengmeng Li, Yu Sun  
-   *Temporal Identity Interaction Dynamic Graph Convolutional Network for Traffic Forecasting*  
+3. **<u>Shiyu Yang</u>**, Qunyong Wu, Mengmeng Li, Yu Sun  
+   _Temporal Identity Interaction Dynamic Graph Convolutional Network for Traffic Forecasting_  
    **IEEE Internet of Things Journal**, 2025, Volume 12, Number 11, Pages 15057-15072  
    [DOI: 10.1109/jiot.2025.3529761](https://doi.org/10.1109/jiot.2025.3529761)
 
-3. **<u>Shiyu Yang</u>**, Qunyong Wu  
-   *MTEGCRN: Multi-scale Temporal Enhanced Graph Convolutional Recurrent Network for Traffic Prediction*  
+4. **<u>Shiyu Yang</u>**, Qunyong Wu  
+   _MTEGCRN: Multi-scale Temporal Enhanced Graph Convolutional Recurrent Network for Traffic Prediction_  
    **Neurocomputing**, 2025, Pages 131064  
    [DOI: 10.1016/j.neucom.2025.131064](https://doi.org/10.1016/j.neucom.2025.131064)
 
-4. **<u>Shiyu Yang</u>**, Qunyong Wu  
-   *SDSINet: A spatiotemporal dual-scale interaction network for traffic prediction*  
+5. **<u>Shiyu Yang</u>**, Qunyong Wu  
+   _SDSINet: A spatiotemporal dual-scale interaction network for traffic prediction_  
    **Applied Soft Computing**, 2025, Pages 112892  
    [DOI: 10.1016/j.asoc.2025.112892](https://doi.org/10.1016/j.asoc.2025.112892)
 
-5. **<u>Shiyu Yang</u>**, Qunyong Wu, Yuhang Wang, Zhan Zhou  
-   *MSTDFGRN: A Multi-view Spatio-Temporal Dynamic Fusion Graph Recurrent Network for traffic flow prediction*  
+6. **<u>Shiyu Yang</u>**, Qunyong Wu, Yuhang Wang, Zhan Zhou  
+   _MSTDFGRN: A Multi-view Spatio-Temporal Dynamic Fusion Graph Recurrent Network for traffic flow prediction_  
    **Computers and Electrical Engineering**, 2025, Volume 123, Pages 110046  
    [DOI: 10.1016/j.compeleceng.2025.110046](https://doi.org/10.1016/j.compeleceng.2025.110046)
 
-6. **<u>Shiyu Yang</u>**, Zhanchao Huang, Qunyong Wu, Zihao Zhuo  
-   *General Decoupled Graph Convolutional Recurrent Network for Traffic Prediction*  
+7. **<u>Shiyu Yang</u>**, Zhanchao Huang, Qunyong Wu, Zihao Zhuo  
+   _General Decoupled Graph Convolutional Recurrent Network for Traffic Prediction_  
    **IEEE Sensors Journal**, 2025  
    [DOI: 10.1109/JSEN.2025.3580440](https://doi.org/10.1109/JSEN.2025.3580440)
 
 ### 2024
 
-7. **<u>Shiyu Yang</u>**, Qunyong Wu, Yuhang Wang, Tingyu Lin  
-   *SSGCRTN: a space-specific graph convolutional recurrent transformer network for traffic prediction*  
+8. **<u>Shiyu Yang</u>**, Qunyong Wu, Yuhang Wang, Tingyu Lin  
+   _SSGCRTN: a space-specific graph convolutional recurrent transformer network for traffic prediction_  
    **Applied Intelligence**, 2024, Volume 54, Number 22, Pages 11978-11994  
    [DOI: 10.1007/s10489-024-05815-1](https://doi.org/10.1007/s10489-024-05815-1)
 
-8. **<u>Shiyu Yang</u>**, Qunyong Wu, Ziwei Li, Keyue Wang  
-   *PSTCGCN: Principal spatio-temporal causal graph convolutional network for traffic flow prediction*  
+9. **<u>Shiyu Yang</u>**, Qunyong Wu, Ziwei Li, Keyue Wang  
+   _PSTCGCN: Principal spatio-temporal causal graph convolutional network for traffic flow prediction_  
    **Neural Computing and Applications**, 2024, Pages 1-14  
    [DOI: 10.1007/s00521-024-10591-7](https://doi.org/10.1007/s00521-024-10591-7)
 
@@ -274,17 +276,21 @@ Here are some moments from my life - travels, hobbies, and beautiful scenery:
 
 ### 2025
 
-9. Yuhang Wang, Qunyong Wu, **Shiyu Yang**, Mengmeng Li, Keyue Wang, Xuanyu Chen  
-   *Enhancing Fish Counting in Sonar Images With Multitask Learning and Local–Global Feature Interaction*  
-   **IEEE Sensors Journal**, 2025, Volume 25, Number 12, Pages 21775-21791  
-   [DOI: 10.1109/JSEN.2025.3562927](https://doi.org/10.1109/JSEN.2025.3562927)
+10. Yuhang Wang, Qunyong Wu, **Shiyu Yang**, Mengmeng Li, Keyue Wang, Xuanyu Chen  
+    _Enhancing Fish Counting in Sonar Images With Multitask Learning and Local–Global Feature Interaction_  
+    **IEEE Sensors Journal**, 2025, Volume 25, Number 12, Pages 21775-21791  
+    [DOI: 10.1109/JSEN.2025.3562927](https://doi.org/10.1109/JSEN.2025.3562927)
+
+11. Zhan Zhou, Qunyong Wu, **Shiyu Yang**, Jiahuan Luo  
+    _MReDTrajRec: a multi-representation data-driven model for trajectory recovery under road network constraints_  
+    **Transportmetrica B: Transport Dynamics**, 2025, Volume 13, Number 1, Pages 2596312
 
 ### 2024
 
-10. Ziwei Li, Weiming Xu, **Shiyu Yang**, Juan Wang, Hua Su, Zhanchao Huang, Sheng Wu  
-   *A Hierarchical Graph-Enhanced Transformer Network for Remote Sensing Scene Classification*  
-   **IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing**, 2024, Volume 17, Pages 20315-20330  
-   [DOI: 10.1109/JSTARS.2024.3491335](https://doi.org/10.1109/JSTARS.2024.3491335)
+12. Ziwei Li, Weiming Xu, **Shiyu Yang**, Juan Wang, Hua Su, Zhanchao Huang, Sheng Wu  
+    _A Hierarchical Graph-Enhanced Transformer Network for Remote Sensing Scene Classification_  
+    **IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing**, 2024, Volume 17, Pages 20315-20330  
+    [DOI: 10.1109/JSTARS.2024.3491335](https://doi.org/10.1109/JSTARS.2024.3491335)
 
 ---
 
@@ -297,6 +303,7 @@ Here are some moments from my life - travels, hobbies, and beautiful scenery:
 I serve as a reviewer for multiple prestigious journals, including but not limited to:
 
 ### IEEE Transactions
+
 - IEEE Transactions on Knowledge and Data Engineering
 - IEEE Transactions on Neural Networks and Learning Systems
 - IEEE Transactions on Intelligent Transportation Systems
@@ -308,9 +315,11 @@ I serve as a reviewer for multiple prestigious journals, including but not limit
 - IEEE Sensors Journal
 
 ### ACM Transactions
+
 - ACM Transactions on Knowledge Discovery from Data
 
 ### Other Top Journals
+
 - Applied Soft Computing Journal
 - Scientific Reports
 - International Journal of Data Science and Analytics
@@ -331,10 +340,10 @@ I serve as a reviewer for multiple prestigious journals, including but not limit
 # 🏆 Honors and Awards
 
 - **Grand Prize**, 12th "Southern Surveying and Mapping Cup" National College Student Surveying Science and Technology Paper Competition  
-  *Project: "Detection of Cracks in the Antarctic Amery Ice Shelf Based on ICESat-2 ATLAS Data"*
+  _Project: "Detection of Cracks in the Antarctic Amery Ice Shelf Based on ICESat-2 ATLAS Data"_
 
 - **Second Prize**, 12th "Southern Surveying and Mapping Cup" National College Student Surveying Science and Technology Paper Competition  
-  *Project: "Extraction of ENSO Signals in the Upper Troposphere of Tropical Regions Using GNSS Occultation Technology"*
+  _Project: "Extraction of ENSO Signals in the Upper Troposphere of Tropical Regions Using GNSS Occultation Technology"_
 
 ---
 
