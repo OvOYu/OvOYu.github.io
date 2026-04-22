@@ -230,8 +230,8 @@ Here are some moments from my life - travels, hobbies, and beautiful scenery:
    [DOI: 10.1016/j.engappai.2025.112956](https://doi.org/10.1016/j.engappai.2025.112956)
 
 2. **<u>Shiyu Yang</u>**, Qunyong Wu, Zhanchao Huang, Zihao Zhuo  
-   _SGA-Seq: Station-aware Graph Attention Sequence Network for Cellular Traffic Prediction_  
-   **IEEE Transactions on Network and Service Management**
+   _SGA-Seq: Station-Aware Graph Attention Sequence Network for Cellular Traffic Prediction_  
+   **IEEE Transactions on Network and Service Management**, 2026, Volume 23, Pages 2652-2665
 
 ### 2025
 
